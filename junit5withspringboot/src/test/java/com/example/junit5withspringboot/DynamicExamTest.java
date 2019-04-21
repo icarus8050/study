@@ -2,10 +2,10 @@ package com.example.junit5withspringboot;
 
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
+import org.junit.jupiter.api.function.ThrowingConsumer;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -47,5 +47,59 @@ public class DynamicExamTest {
         return IntStream.iterate(0, n -> n + 2).limit(10)
                 .mapToObj(n -> DynamicTest.dynamicTest("test" + n,
                         () -> assertTrue(n % 2 == 0)));
+    }
+    @TestFactory
+    Stream<DynamicTest> dynamicTestsFromStream() {
+
+        // sample input and output
+        List<String> inputList = Arrays.asList("www.somedomain.com", "www.anotherdomain.com", "www.yetanotherdomain.com");
+        List<String> outputList = Arrays.asList("154.174.10.56", "211.152.104.132", "178.144.120.156");
+
+        // input generator that generates inputs using inputList
+        Iterator<String> inputGenerator = inputList.iterator();
+
+        // a display name generator that creates a different name based on the input
+        Function<String, String> displayNameGenerator = (input) -> "Resolving: " + input;
+
+        // the test executor, which actually has the logic of how to execute the test case
+        DomainNameResolver resolver = new DomainNameResolver();
+        ThrowingConsumer<String> testExecutor = (input) -> {
+            int id = inputList.indexOf(input);
+            assertEquals(outputList.get(id), resolver.resolveDomain(input));
+        };
+
+        // combine everything and return a Stream of DynamicTest
+        return DynamicTest.stream(inputGenerator, displayNameGenerator, testExecutor);
+    }
+
+    @TestFactory
+    Stream<DynamicTest> dynamicTestsFromStreamInJava8() {
+
+        DomainNameResolver resolver = new DomainNameResolver();
+
+        List<String> inputList = Arrays.asList("www.somedomain.com", "www.anotherdomain.com", "www.yetanotherdomain.com");
+        List<String> outputList = Arrays.asList("154.174.10.56", "211.152.104.132", "178.144.120.156");
+
+        return inputList.stream()
+                .map(dom -> DynamicTest.dynamicTest("Resolving: " + dom, () -> {
+                    int id = inputList.indexOf(dom);
+                    assertEquals(outputList.get(id), resolver.resolveDomain(dom));
+                }));
+
+    }
+
+    class DomainNameResolver {
+
+        private Map<String, String> ipByDomainName = new HashMap<>();
+
+        DomainNameResolver() {
+            this.ipByDomainName.put("www.somedomain.com", "154.174.10.56");
+            this.ipByDomainName.put("www.anotherdomain.com", "211.152.104.132");
+            this.ipByDomainName.put("www.yetanotherdomain.com", "178.144.120.156");
+        }
+
+        public String resolveDomain(String domainName) {
+            return ipByDomainName.get(domainName);
+        }
     }
 }
