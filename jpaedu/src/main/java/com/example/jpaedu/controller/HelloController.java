@@ -1,14 +1,16 @@
 package com.example.jpaedu.controller;
 
 import com.example.jpaedu.domain.Member;
+import com.example.jpaedu.service.MemberService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequiredArgsConstructor
 public class HelloController {
+    private final MemberService memberService;
 
     @GetMapping("/hello")
     @ResponseBody
@@ -25,5 +27,11 @@ public class HelloController {
                 .build();
 
         return new ResponseEntity<>(member, HttpStatus.OK);
+    }
+
+    @PostMapping("/signup")
+    public ResponseEntity<Member> saveMember(@RequestBody Member member) {
+        Member joinedMember = memberService.signUp(member.getName(), member.getAge());
+        return new ResponseEntity<>(joinedMember, HttpStatus.OK);
     }
 }
