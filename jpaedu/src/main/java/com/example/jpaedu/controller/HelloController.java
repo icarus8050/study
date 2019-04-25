@@ -34,4 +34,10 @@ public class HelloController {
         Member joinedMember = memberService.signUp(member.getName(), member.getAge());
         return new ResponseEntity<>(joinedMember, HttpStatus.OK);
     }
+
+    @GetMapping("/find")
+    @ResponseBody
+    public Member find(Long id) {
+        return memberService.find(id);
+    }
 }
