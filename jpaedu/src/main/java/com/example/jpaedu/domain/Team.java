@@ -1,13 +1,14 @@
 package com.example.jpaedu.domain;
 
-import lombok.Getter;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Getter
+@Data
 @NoArgsConstructor
 public class Team {
 
@@ -17,6 +18,7 @@ public class Team {
 
     private String name;
 
-    @OneToMany
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Member> members;
 }

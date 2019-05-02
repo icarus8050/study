@@ -1,7 +1,6 @@
 package com.example.jpaedu.controller;
 
 import com.example.jpaedu.domain.Member;
-import com.example.jpaedu.domain.Team;
 import com.example.jpaedu.service.TeamService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,10 +15,9 @@ public class TeamController {
 
     private final TeamService teamService;
 
-    @GetMapping("/findteam")
+    @GetMapping("/findteamofmember")
     @ResponseBody
     public List<Member> findteam(Long id) {
-        Team team = teamService.find(id);
-        return team.getMembers();
+        return teamService.find(id).getMembers();
     }
 }

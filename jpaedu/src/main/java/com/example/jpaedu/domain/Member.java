@@ -1,13 +1,14 @@
 package com.example.jpaedu.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
-@Getter
+@Data
 @NoArgsConstructor
 public class Member {
     @Id
@@ -16,8 +17,9 @@ public class Member {
     private String name;
     private Integer age;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "team_id")
+    @JsonBackReference
     private Team team;
 
     @Builder

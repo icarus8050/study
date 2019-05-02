@@ -42,7 +42,7 @@ public class HelloController {
         return memberService.find(id);
     }
 
-    @GetMapping("/findteamofmember")
+    @GetMapping("/findmemberteam")
     @ResponseBody
     public Team findteam(Long id) {
         Member member = memberService.find(id);
