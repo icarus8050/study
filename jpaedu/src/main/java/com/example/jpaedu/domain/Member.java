@@ -4,10 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -19,10 +16,15 @@ public class Member {
     private String name;
     private Integer age;
 
+    @ManyToOne
+    @JoinColumn(name = "team_id")
+    private Team team;
+
     @Builder
-    public Member(Long id, String name, Integer age) {
+    public Member(Long id, String name, Integer age, Team team) {
         this.id = id;
         this.name = name;
         this.age = age;
+        this.team = team;
     }
 }
