@@ -17,6 +17,6 @@ public class Team {
 
     private String name;
 
-    @OneToMany(mappedBy = "team")
+    @OneToMany
     private List<Member> members;
 }

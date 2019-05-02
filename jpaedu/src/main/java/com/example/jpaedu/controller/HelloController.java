@@ -1,6 +1,7 @@
 package com.example.jpaedu.controller;
 
 import com.example.jpaedu.domain.Member;
+import com.example.jpaedu.domain.Team;
 import com.example.jpaedu.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -39,5 +40,12 @@ public class HelloController {
     @ResponseBody
     public Member find(Long id) {
         return memberService.find(id);
+    }
+
+    @GetMapping("/findteamofmember")
+    @ResponseBody
+    public Team findteam(Long id) {
+        Member member = memberService.find(id);
+        return member.getTeam();
     }
 }
