@@ -16,5 +16,6 @@ public class SimpleController {
 
     @GetMapping("/sample")
     public String sample() {
+
     }
 }

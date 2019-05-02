@@ -1,6 +1,6 @@
-package com.example.jpaedu.repository;
+package com.example.jpaedu.nplus1_case_1.repository;
 
-import com.example.jpaedu.domain.Academy;
+import com.example.jpaedu.nplus1_case_1.domain.Academy;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

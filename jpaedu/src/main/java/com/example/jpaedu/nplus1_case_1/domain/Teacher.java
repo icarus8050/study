@@ -1,4 +1,4 @@
-package com.example.jpaedu.domain;
+package com.example.jpaedu.nplus1_case_1.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

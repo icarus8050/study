@@ -1,8 +1,8 @@
-package com.example.jpaedu.service;
+package com.example.jpaedu.nplus1_case_1.service;
 
-import com.example.jpaedu.domain.Academy;
-import com.example.jpaedu.domain.Subject;
-import com.example.jpaedu.repository.AcademyRepository;
+import com.example.jpaedu.nplus1_case_1.domain.Academy;
+import com.example.jpaedu.nplus1_case_1.domain.Subject;
+import com.example.jpaedu.nplus1_case_1.repository.AcademyRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

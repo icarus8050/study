@@ -1,7 +1,7 @@
-package com.example.jpaedu.service;
+package com.example.jpaedu.nplus1_case_1.service;
 
-import com.example.jpaedu.domain.Academy;
-import com.example.jpaedu.repository.AcademyRepository;
+import com.example.jpaedu.nplus1_case_1.domain.Academy;
+import com.example.jpaedu.nplus1_case_1.repository.AcademyRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
