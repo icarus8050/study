@@ -10,7 +10,7 @@ public class JpaeduApplicationTests {
 
     @Test
     public void contextLoads() {
-        Assertions.assertNotNull("aaa");
+        Assertions.assertNotNull(" ");
     }
 
 }
