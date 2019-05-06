@@ -1,8 +1,13 @@
 plugins {
     id 'org.springframework.boot' version '2.1.4.RELEASE'
     id 'java'
+    id 'com.gradle.build-scan' version '2.0.2'
 }
+buildScan {
+    termsOfServiceUrl = 'https://gradle.com/terms-of-service'
+    termsOfServiceAgree = 'yes'
 
+}
 apply plugin: 'io.spring.dependency-management'
 
 group = 'com.example'
@@ -30,4 +35,9 @@ dependencies {
     }
     testImplementation 'org.mockito:mockito-junit-jupiter'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.4.2'
+    testImplementation 'org.junit.vintage:junit-vintage-engine:5.2.0'
+}
+
+test {
+    useJUnitPlatform()
 }
