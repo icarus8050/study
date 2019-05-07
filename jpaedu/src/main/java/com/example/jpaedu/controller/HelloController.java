@@ -48,4 +48,10 @@ public class HelloController {
         Member member = memberService.find(id);
         return member.getTeam();
     }
+
+    @GetMapping("/findbyusername")
+    @ResponseBody
+    public Member findByUserName(String name) {
+        return memberService.findByUserName(name);
+    }
 }
