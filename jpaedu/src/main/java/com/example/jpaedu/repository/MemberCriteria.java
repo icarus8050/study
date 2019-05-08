@@ -1,7 +1,6 @@
 package com.example.jpaedu.repository;
 
 import com.example.jpaedu.domain.Member;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,7 +9,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Repository
@@ -20,7 +18,7 @@ public class MemberCriteria {
     private EntityManager entityManager;
 
     @Transactional(readOnly = true)
-    public List<Member> findMembers(@NotNull Pageable pageable) {
+    public List<Member> findMembers() {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 
         //Select
