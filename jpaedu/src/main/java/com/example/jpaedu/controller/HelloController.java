@@ -3,15 +3,19 @@ package com.example.jpaedu.controller;
 import com.example.jpaedu.domain.Member;
 import com.example.jpaedu.domain.Team;
 import com.example.jpaedu.service.MemberService;
+import com.example.jpaedu.service.MemberServiceWithCriteria;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 public class HelloController {
     private final MemberService memberService;
+    private final MemberServiceWithCriteria memberServiceWithCriteria;
 
     @GetMapping("/hello")
     @ResponseBody
@@ -53,5 +57,11 @@ public class HelloController {
     @ResponseBody
     public Member findByUserName(String name) {
         return memberService.findByUserName(name);
+    }
+
+    @GetMapping("/getmembers")
+    @ResponseBody
+    public List<Member> findByMembers() {
+        return memberServiceWithCriteria.findByMembers();
     }
 }
