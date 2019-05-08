@@ -20,7 +20,7 @@ public class MemberCriteria {
     private EntityManager entityManager;
 
     @Transactional(readOnly = true)
-    public List<Member> findMember(@NotNull Pageable pageable) {
+    public List<Member> findMembers(@NotNull Pageable pageable) {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 
         //Select
