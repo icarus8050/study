@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -32,7 +33,7 @@ public class MemberService {
     //PageRequest는 deprecated 되었다.
     public Page<Member> findByPagingMember(Pageable pageable) {
         pageable = PageRequest.of(pageable.getPageNumber() <= 0 ?
-                0 : pageable.getPageNumber() - 1, pageable.getPageSize());
+                0 : pageable.getPageNumber() - 1, pageable.getPageSize(), Sort.by("name").descending());
         return memberReposiroty.findAll(pageable);
     }
 }
