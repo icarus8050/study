@@ -5,6 +5,9 @@ import com.example.jpaedu.domain.Team;
 import com.example.jpaedu.service.MemberService;
 import com.example.jpaedu.service.MemberServiceWithCriteria;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -63,5 +66,11 @@ public class HelloController {
     @ResponseBody
     public List<Member> findByMembers() {
         return memberServiceWithCriteria.findByMembers();
+    }
+
+    @GetMapping("/pagingmembers")
+    @ResponseBody
+    public Page<Member> pagingMember(@PageableDefault Pageable pageable) {
+        return memberService.findByPagingMember(pageable);
     }
 }
