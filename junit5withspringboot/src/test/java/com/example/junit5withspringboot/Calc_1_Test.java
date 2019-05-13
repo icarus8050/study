@@ -4,12 +4,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
+import org.junit.platform.suite.api.IncludeEngines;
 import org.junit.runner.RunWith;
 
 //@SpringBootTest
 //@RunWith(SpringRunner.class)
 @Slf4j
 @RunWith(JUnitPlatform.class)
+@IncludeEngines("junit-jupiter")
 public class Calc_1_Test {
 
     //@Autowired
