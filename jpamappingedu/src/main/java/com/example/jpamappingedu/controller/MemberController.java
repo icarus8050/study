@@ -18,4 +18,12 @@ public class MemberController {
     public Member findById(Long id) {
         return memberService.findById(id);
     }
+
+    @GetMapping("/saveMember")
+    @ResponseBody
+    public Member saveMember(String name, Long age) {
+        return memberService.saveMember(
+                Member.builder().name(name).age(age).build()
+        );
+    }
 }
