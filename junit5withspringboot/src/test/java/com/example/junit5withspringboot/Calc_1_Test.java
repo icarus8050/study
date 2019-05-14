@@ -1,25 +1,26 @@
 package com.example.junit5withspringboot;
 
+import com.example.junit5withspringboot.configure.bean.Calculator;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.platform.suite.api.IncludeEngines;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-//@SpringBootTest
-//@RunWith(SpringRunner.class)
+
 @Slf4j
-@RunWith(JUnitPlatform.class)
-@IncludeEngines("junit-jupiter")
+@SpringBootTest(classes = {Junit5withspringbootApplication.class})
+@ExtendWith(SpringExtension.class)
 public class Calc_1_Test {
 
-    //@Autowired
-    //private Calculator calculator;
+    @Autowired
+    private Calculator calculator;
 
     @Test
     public void test_1() {
-        String result = "15";//Integer.toString(calculator.add(5, 10));
+        String result = Integer.toString(calculator.add(5, 10));
         log.info(result);
         Assertions.assertEquals("15", result);
     }
