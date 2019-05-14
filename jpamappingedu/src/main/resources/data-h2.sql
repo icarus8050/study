@@ -1,0 +1,12 @@
+INSERT INTO MEMBER(name, age) values('아이유', 27);
+INSERT INTO MEMBER(name, age) values('레드벨벳', 24);
+INSERT INTO MEMBER(name, age) values('비투비', 30);
+INSERT INTO MEMBER(name, age) values('악동뮤지션', 18);
+INSERT INTO MEMBER(name, age) values('씨야', 12);
+INSERT INTO MEMBER(name, age) values('방탄소년단', 26);
+INSERT INTO MEMBER(name, age) values('윤종신', 36);
+INSERT INTO MEMBER(name, age) values('마마무', 31);
+INSERT INTO MEMBER(name, age) values('트와이스', 19);
+INSERT INTO MEMBER(name, age) values('엑소', 33);
+INSERT INTO MEMBER(name, age) values('태연', 32);
+INSERT INTO MEMBER(name, age) values('윤하', 16);
