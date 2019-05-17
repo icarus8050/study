@@ -20,7 +20,7 @@ public class MemberCriteria {
     EntityManager entityManager;
 
     @Transactional(readOnly = true)
-    public Member findMembersLessThanAge(@NotNull Long age) {
+    public List<Member> findMembersLessThanAge(@NotNull Long age) {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 
         CriteriaQuery<Member> criteria = builder.createQuery(Member.class);
@@ -31,6 +31,6 @@ public class MemberCriteria {
         criteria.select(root).where(memberIdEqual);
         List<Member> resultList = entityManager.createQuery(criteria).getResultList();
 
-        return
+        return resultList;
     }
 }
