@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 public class MemberController {
@@ -25,5 +27,11 @@ public class MemberController {
         return memberService.saveMember(
                 Member.builder().name(name).age(age).build()
         );
+    }
+
+    @GetMapping("/findByMembersLessThanAge")
+    @ResponseBody
+    public List<Member> findByMembersLessThanAge(Long age) {
+        return memberService.findMembersLessThanAge(age);
     }
 }
