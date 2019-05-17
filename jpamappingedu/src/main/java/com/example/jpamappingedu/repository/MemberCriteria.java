@@ -26,7 +26,7 @@ public class MemberCriteria {
         CriteriaQuery<Member> criteria = builder.createQuery(Member.class);
         Root<Member> root = criteria.from(Member.class);
 
-        Predicate memberIdEqual = builder.lessThan(root.get("memberId"), age);
+        Predicate memberIdEqual = builder.lessThan(root.get("age"), age);
 
         criteria.select(root).where(memberIdEqual);
         List<Member> resultList = entityManager.createQuery(criteria).getResultList();
