@@ -27,4 +27,10 @@ public class MemberService {
     public List<Member> findMembersLessThanAge(@NotNull Long age) {
         return memberCriteria.findMembersLessThanAge(age);
     }
+
+    public Member update(Long id) {
+        Member member = memberRepository.findById(id).orElse(null);
+        member.changeAge();
+        return memberRepository.save(member);
+    }
 }

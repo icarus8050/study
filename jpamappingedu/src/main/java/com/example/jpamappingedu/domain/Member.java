@@ -1,14 +1,11 @@
 package com.example.jpamappingedu.domain;
 
+import com.example.jpamappingedu.controller.Team;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor
@@ -27,5 +24,13 @@ public class Member extends BaseEntity {
     public Member(String name, Long age) {
         this.name = name;
         this.age = age;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "TEAM_ID")
+    private Team team;
+
+    public void changeAge() {
+        age = 100L;
     }
 }

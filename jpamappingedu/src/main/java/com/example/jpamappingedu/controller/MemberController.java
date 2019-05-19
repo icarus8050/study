@@ -34,4 +34,10 @@ public class MemberController {
     public List<Member> findByMembersLessThanAge(Long age) {
         return memberService.findMembersLessThanAge(age);
     }
+
+    @GetMapping("/changeAge")
+    @ResponseBody
+    public Member changeAge(Long id) {
+        return memberService.update(id);
+    }
 }
