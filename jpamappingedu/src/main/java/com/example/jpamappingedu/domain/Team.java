@@ -1,6 +1,5 @@
-package com.example.jpamappingedu.controller;
+package com.example.jpamappingedu.domain;
 
-import com.example.jpamappingedu.domain.BaseEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

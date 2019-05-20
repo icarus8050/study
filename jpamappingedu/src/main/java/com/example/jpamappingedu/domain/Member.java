@@ -1,6 +1,5 @@
 package com.example.jpamappingedu.domain;
 
-import com.example.jpamappingedu.controller.Team;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
