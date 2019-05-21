@@ -10,3 +10,15 @@ INSERT INTO MEMBER(name, age) values('트와이스', 19);
 INSERT INTO MEMBER(name, age) values('엑소', 33);
 INSERT INTO MEMBER(name, age) values('태연', 32);
 INSERT INTO MEMBER(name, age) values('윤하', 16);
+
+
+-- Team
+INSERT INTO TEAM(team_name) values ('대한민국');
+INSERT INTO TEAM(team_name, parent_id) values ('서울', 1);
+INSERT INTO TEAM(team_name, parent_id) values ('대전', 1);
+INSERT INTO TEAM(team_name, parent_id) values ('부산', 1);
+INSERT INTO TEAM(team_name) values ('미국');
+INSERT INTO TEAM(team_name, parent_id) values ('로스앤젤레스', 5);
+INSERT INTO TEAM(team_name, parent_id) values ('워싱턴', 5);
+INSERT INTO TEAM(team_name, parent_id) values ('뉴욕', 5);
+INSERT INTO TEAM(team_name, parent_id) values ('라스베이거스', 5);

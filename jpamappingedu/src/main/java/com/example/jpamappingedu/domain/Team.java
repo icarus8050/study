@@ -17,11 +17,6 @@ public class Team extends BaseEntity {
 
     private String teamName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "team_id")
-    private Team parentTeam;
-
-    @OneToMany
-    @JoinColumn(name = "team_id")
-    private List<Team> childTeam;
+    @Column(nullable = true)
+    private Long parentId;
 }
