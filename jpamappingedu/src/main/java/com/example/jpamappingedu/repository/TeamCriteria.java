@@ -20,9 +20,8 @@ public class TeamCriteria {
         CriteriaQuery<Team> query = builder.createQuery(Team.class);
 
         Root<Team> parent = query.from(Team.class);
-        Join<Team, Team> children = parent.join("parentTeam", JoinType.INNER);
 
-        query.select(parent).where(builder.equal(parent.get("id"), id));
+        query.select(parent).where(builder.equal(parent.get("parentTeam"), id));
 
         return entityManager.createQuery(query).getResultList();
     }
