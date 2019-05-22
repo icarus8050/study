@@ -3,8 +3,10 @@ package com.example.jpamappingedu.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 @NoArgsConstructor
@@ -17,7 +19,9 @@ public class Team extends BaseEntity {
 
     private String teamName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    /*@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parentId", referencedColumnName = "id")
-    private Team parentTeam;
+    private Team parentTeam;*/
+
+    private Long parentId;
 }

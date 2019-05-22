@@ -21,7 +21,7 @@ public class TeamCriteria {
 
         Root<Team> parent = query.from(Team.class);
 
-        query.select(parent).where(builder.equal(parent.get("parentTeam"), id));
+        query.select(parent).where(builder.equal(parent.get("parentId"), id));
 
         return entityManager.createQuery(query).getResultList();
     }
