@@ -3,10 +3,8 @@ package com.example.jpamappingedu.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -24,4 +22,7 @@ public class Team extends BaseEntity {
     private Team parentTeam;*/
 
     private Long parentId;
+
+    @OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
+    private List<Member> members;
 }
