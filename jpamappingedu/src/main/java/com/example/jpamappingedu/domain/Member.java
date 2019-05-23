@@ -1,5 +1,6 @@
 package com.example.jpamappingedu.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,6 +28,7 @@ public class Member extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "TEAM_ID")
+    @JsonBackReference
     private Team team;
 
     public void changeAge() {

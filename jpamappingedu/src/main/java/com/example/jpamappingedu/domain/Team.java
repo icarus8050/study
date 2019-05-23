@@ -1,5 +1,6 @@
 package com.example.jpamappingedu.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -24,5 +25,6 @@ public class Team extends BaseEntity {
     private Long parentId;
 
     @OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Member> members;
 }
