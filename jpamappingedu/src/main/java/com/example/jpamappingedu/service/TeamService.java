@@ -1,5 +1,6 @@
 package com.example.jpamappingedu.service;
 
+import com.example.jpamappingedu.domain.Member;
 import com.example.jpamappingedu.domain.Team;
 import com.example.jpamappingedu.repository.TeamCriteria;
 import lombok.RequiredArgsConstructor;
@@ -15,5 +16,9 @@ public class TeamService {
 
     public List<Team> findByChildTeam(Long id) {
         return teamCriteria.findByChildList(id);
+    }
+
+    public List<Member> findTeamMembers(Long id) {
+        return teamCriteria.findById(id).getMembers();
     }
 }
