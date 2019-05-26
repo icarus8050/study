@@ -27,4 +27,10 @@ public class TeamController {
     public List<Member> findByTeamMembers(Long id) {
         return teamService.findTeamMembers(id);
     }
+
+    @GetMapping("findByidTeam")
+    @ResponseBody
+    public Team findByIdTeam(Long id) {
+        return  teamService.findByid(id);
+    }
 }
