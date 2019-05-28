@@ -16,7 +16,7 @@ public class Query implements GraphQLQueryResolver {
         return memberRepository.findAll();
     }
 
-    public Long coutMembers() {
+    public Long countMembers() {
         return memberRepository.count();
     }
 }
