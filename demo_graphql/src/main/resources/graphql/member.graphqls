@@ -1,0 +1,13 @@
+type Member {
+    memberId: ID!
+    name: String!
+}
+
+type Query {
+    findAllMembers: [Member]!
+    countMembers: Int!
+}
+
+type Mutation {
+    newMember(name: String!, age: Int!) : Member!
+}
