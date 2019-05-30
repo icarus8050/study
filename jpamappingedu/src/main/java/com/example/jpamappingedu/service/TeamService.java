@@ -27,4 +27,8 @@ public class TeamService {
     public Team findByid(Long id) {
         return teamRepository.findById(id).orElse(null);
     }
+
+    public List<Team> findTeams(Long id) {
+        return teamRepository.findAll();
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.jpamappingedu.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,11 +19,17 @@ public class Team extends BaseEntity {
 
     private String teamName;
 
-    /*@ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parentId", referencedColumnName = "id")
-    private Team parentTeam;*/
+    @JsonBackReference
+    private Team parentTeam;
 
-    private Long parentId;
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "parentId")
+    @JsonManagedReference
+    private List<Team> teams;
+
+    //private Long parentId;
 
     @OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
     @JsonManagedReference

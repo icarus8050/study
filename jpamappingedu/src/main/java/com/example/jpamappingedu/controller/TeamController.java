@@ -33,4 +33,10 @@ public class TeamController {
     public Team findByIdTeam(Long id) {
         return  teamService.findByid(id);
     }
+
+    @GetMapping("/findAllTeam")
+    @ResponseBody
+    public List<Team> findAllTeam(Long id) {
+        return teamService.findTeams(id);
+    }
 }
