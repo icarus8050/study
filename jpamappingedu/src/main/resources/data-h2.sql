@@ -22,3 +22,7 @@ INSERT INTO TEAM(team_name, parent_id) values ('로스앤젤레스', 5);
 INSERT INTO TEAM(team_name, parent_id) values ('워싱턴', 5);
 INSERT INTO TEAM(team_name, parent_id) values ('뉴욕', 5);
 INSERT INTO TEAM(team_name, parent_id) values ('라스베이거스', 5);
+INSERT INTO TEAM(team_name, parent_id) values ('타이완', 2);
+INSERT INTO TEAM(team_name, parent_id) values ('도쿄', 2);
+INSERT INTO TEAM(team_name, parent_id) values ('상하이', 3);
+INSERT INTO TEAM(team_name, parent_id) values ('홍콩', 4);
