@@ -1,4 +1,4 @@
-package com.example.jpamappingedu.domain;
+package com.example.demo_graphql.domain;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;

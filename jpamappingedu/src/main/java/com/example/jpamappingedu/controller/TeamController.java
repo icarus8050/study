@@ -1,5 +1,6 @@
 package com.example.jpamappingedu.controller;
 
+import com.example.jpamappingedu.domain.Member;
 import com.example.jpamappingedu.domain.Team;
 import com.example.jpamappingedu.service.TeamService;
 import lombok.RequiredArgsConstructor;
@@ -19,5 +20,17 @@ public class TeamController {
     @ResponseBody
     public List<Team> findByChildTeam(Long id) {
         return teamService.findByChildTeam(id);
+    }
+
+    @GetMapping("findTeamMembers")
+    @ResponseBody
+    public List<Member> findByTeamMembers(Long id) {
+        return teamService.findTeamMembers(id);
+    }
+
+    @GetMapping("findByidTeam")
+    @ResponseBody
+    public Team findByIdTeam(Long id) {
+        return  teamService.findByid(id);
     }
 }

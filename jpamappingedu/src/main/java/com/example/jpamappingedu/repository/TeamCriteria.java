@@ -25,4 +25,16 @@ public class TeamCriteria {
 
         return entityManager.createQuery(query).getResultList();
     }
+
+    public Team findById(Long id) {
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+
+        CriteriaQuery<Team> query = builder.createQuery(Team.class);
+
+        Root<Team> root = query.from(Team.class);
+
+        query.select(root).where(builder.equal(root.get("id"), id));
+
+        return entityManager.createQuery(query).getSingleResult();
+    }
 }
