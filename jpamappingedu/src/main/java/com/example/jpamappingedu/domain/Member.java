@@ -34,4 +34,7 @@ public class Member extends BaseEntity {
     public void changeAge() {
         age = 100L;
     }
+
+    @Embedded
+    private Address address;
 }
