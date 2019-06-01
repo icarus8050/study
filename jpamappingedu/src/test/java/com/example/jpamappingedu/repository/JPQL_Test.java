@@ -79,8 +79,10 @@ public class JPQL_Test {
 
     @Test
     void simpleProjectionTest() {
-        Query query = entityManager.createQuery("select m.name, m.age from Member m");
-        List resultList = query.getResultList();
+        /*Query query = entityManager.createQuery("select m.name, m.age from Member m");
+        List resultList = query.getResultList();*/
+
+        List resultList = entityManager.createQuery("select m.name, m.age from Member m").getResultList();
 
         Iterator iterator = resultList.iterator();
         while (iterator.hasNext()) {
@@ -88,6 +90,18 @@ public class JPQL_Test {
             String userName = (String) row[0];
             Long age = (Long) row[1];
             log.info("name : " + userName + ", age : " + age);
+        }
+    }
+
+    @Test
+    void simplePaingTest() {
+        TypedQuery<Member> query = entityManager.createQuery("select m from Member m", Member.class);
+        query.setFirstResult(1);
+        query.setMaxResults(5);
+        List<Member> resultList = query.getResultList();
+
+        for (Member m : resultList) {
+            log.info("result : " + m.getMemberId());
         }
     }
 }
