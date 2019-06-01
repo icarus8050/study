@@ -13,6 +13,7 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.util.Iterator;
 import java.util.List;
 
 @DataJpaTest
@@ -73,6 +74,20 @@ public class JPQL_Test {
             Object[] result = (Object[]) o;
             log.info("name : " + result[0]);
             log.info("age : " + result[1]);
+        }
+    }
+
+    @Test
+    void simpleProjectionTest() {
+        Query query = entityManager.createQuery("select m.name, m.age from Member m");
+        List resultList = query.getResultList();
+
+        Iterator iterator = resultList.iterator();
+        while (iterator.hasNext()) {
+            Object[] row = (Object[]) iterator.next();
+            String userName = (String) row[0];
+            Long age = (Long) row[1];
+            log.info("name : " + userName + ", age : " + age);
         }
     }
 }
