@@ -9,11 +9,7 @@
             <input type="text" v-model="message" />
             <h1 v-if="visible">i'm visible</h1>
             <h1 v-show="visible">i'm visible</h1>
-            <ul>
-                <li v-for="n in numbers">
-                    {{ n }}
-                </li>
-            </ul>
+            <button v-on:click="visible = !visible">visible button</button>
             <table>
                 <thead>
                     <tr>
@@ -28,6 +24,18 @@
                     </tr>
                 </tbody>
             </table>
+            <button v-on:click="alert('버튼을 클릭했습니다.')">버튼</button>
+            <hr />
+            <button v-on:dblclick="alert('더블 버튼을 클릭했습니다.')">버튼</button>
+            <ul>
+                <li v-for="n in numbers">{{ n }}</li>
+            </ul>
+            <button @click="add()">add 버튼</button>
+            <hr />
+            <input type="text" v-model="animal" @keyup.enter="capture()">
+            <ul>
+                <li v-for="a in animals">{{ a }}</li>
+            </ul>
         </div>
         <script src = "https://cdn.jsdelivr.net/npm/vue"></script>
         <script>
@@ -50,7 +58,21 @@
                             name: 'banana',
                             cost: 4000
                         }
-                    ]
+                    ],
+                    animal: null,
+                    animals: []
+                },
+                methods: {
+                    add: function() {
+                        for (var i = 0; i < this.numbers.length; i++) {
+                            this.numbers[i] = this.numbers[i] + 1;
+                        }
+                    },
+                    capture: function() {
+                        if(this.animal) {
+                            this.animals.push(this.animal);
+                        }
+                    }
                 }
             })
         </script>
