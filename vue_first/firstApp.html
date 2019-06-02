@@ -7,12 +7,15 @@
         <div id="app">
             <div>{{ message }}</div>
             <input type="text" v-model="message" />
+            <h1 v-if="visible">i'm visible</h1>
+            <h1 v-show="visible">i'm visible</h1>
         </div>
         <script src = "https://cdn.jsdelivr.net/npm/vue"></script>
         <script>
             var firstApp = new Vue({
                 el: '#app',
                 data: {
+                    visible: true,
                     message: 'first vue.js app'
                 }
             })
