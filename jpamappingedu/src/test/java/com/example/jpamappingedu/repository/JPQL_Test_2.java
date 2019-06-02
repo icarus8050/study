@@ -82,4 +82,38 @@ public class JPQL_Test_2 {
             log.info("team name : " + m.getTeam().getTeamName());
         }
     }
+
+    @Test
+    void collectionFetchJoinTest_1() {
+        String jpql = "select t from Team t join fetch t.members where t.id = 1";
+        TypedQuery<Team> query = entityManager.createQuery(jpql, Team.class);
+
+        //team의 멤버가 두 명이기 때문에 Team도 2건이 조회된다.
+        List<Team> teams = query.getResultList();
+
+        for (Team t : teams) {
+            log.info("team name : " + t.getTeamName() + " team : " + t);
+
+            for (Member m : t.getMembers()) {
+                log.info("member name : " + m.getName() + " member : " + m);
+            }
+        }
+    }
+
+    @Test
+    void collectionFetchJoinTest_2() {
+        //distinct 하나 붙힌 것 만으로도 중복 조회를 없앨 수 있다.
+        String jpql = "select distinct t from Team t join fetch t.members where t.id = 1";
+        TypedQuery<Team> query = entityManager.createQuery(jpql, Team.class);
+
+        List<Team> teams = query.getResultList();
+
+        for (Team t : teams) {
+            log.info("team name : " + t.getTeamName() + " team : " + t);
+
+            for (Member m : t.getMembers()) {
+                log.info("member name : " + m.getName() + " member : " + m);
+            }
+        }
+    }
 }
