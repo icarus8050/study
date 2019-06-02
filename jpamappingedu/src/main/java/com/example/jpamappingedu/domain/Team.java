@@ -24,7 +24,7 @@ public class Team extends BaseEntity {
     @JsonBackReference
     private Team parentTeam;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany
     @JoinColumn(name = "parentId")
     @JsonManagedReference
     private List<Team> teams;

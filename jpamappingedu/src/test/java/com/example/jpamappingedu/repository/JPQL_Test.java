@@ -67,7 +67,7 @@ public class JPQL_Test {
 
     @Test
     void simpleQueryTest() {
-        Query query = entityManager.createQuery("select m.name, m.age from Member m");
+        Query query = entityManager.createQuery("select m.naasdme, m.age from Member m");
         List resultList = query.getResultList();
 
         for (Object o : resultList) {
