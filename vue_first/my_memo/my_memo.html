@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>메모 앱</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, user-scalable=no" />
+        <link href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" rel="stylesheet"/>
+        <link href="app.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div id="app" class="app">
+            <div class="head">Memo App</div>
+            <div class="body">
+                <ul>
+                    <li v-for="m in memos">{{ m.content }}</li>
+                </ul>
+                <button class="add-btn" type="button">+</button>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <script src="app.js"></script>
+    </body>
+</html>
