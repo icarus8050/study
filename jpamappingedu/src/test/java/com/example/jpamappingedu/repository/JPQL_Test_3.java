@@ -1,6 +1,7 @@
 package com.example.jpamappingedu.repository;
 
 import com.example.jpamappingedu.domain.Member;
+import com.example.jpamappingedu.domain.Team;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,19 @@ public class JPQL_Test_3 {
 
         for (Member m : resultList) {
             log.info("name : " + m.getName());
+        }
+    }
+
+    @Test
+    void simpleInTest() {
+        String jpql = "select t from Team t " +
+                "where t in (select t2 from Team t2 join t2.members m2 where m2.age >= 30)";
+        TypedQuery<Team> query = entityManager.createQuery(jpql,Team.class);
+
+        List<Team> resultList = query.getResultList();
+
+        for (Team t : resultList) {
+            log.info("name : " + t.getTeamName());
         }
     }
 }
