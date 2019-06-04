@@ -59,4 +59,26 @@ public class Criteria_Test_1 {
             log.info("age : " + member.getAge());
         }
     }
+
+    @Test
+    void simpleMultiSelect() {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+
+        CriteriaQuery<Object[]> cq = cb.createQuery(Object[].class);
+
+        Root<Member> m = cq.from(Member.class);
+
+        cq.multiselect(m.get("name"), m.get("age")).distinct(true);
+        /* 위와 같은 코드 */
+        //cq.select(cb.array(m.get("name"), m.get("age"))).distinct(true);
+
+        TypedQuery<Object[]> query = entityManager.createQuery(cq);
+
+        List<Object[]> resultList = query.getResultList();
+
+        for (Object[] o : resultList) {
+            log.info("name " + o[0]);
+            log.info("age " + o[1]);
+        }
+    }
 }
