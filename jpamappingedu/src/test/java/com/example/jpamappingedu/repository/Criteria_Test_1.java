@@ -45,6 +45,9 @@ public class Criteria_Test_1 {
 
         Predicate userAgeGreater = cb.greaterThan(m.get("age"), 30);
 
+        /* 이렇게도 가능하다 */
+        //Predicate userAgeGreater = cb.gt(m.<Long>get("age"), 30);
+
         Order ageDesc = cb.desc(m.get("age"));
 
         cq.select(m).where(userAgeGreater).orderBy(ageDesc);
