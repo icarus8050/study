@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Tuple;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import java.util.List;
@@ -79,6 +80,32 @@ public class Criteria_Test_1 {
         for (Object[] o : resultList) {
             log.info("name " + o[0]);
             log.info("age " + o[1]);
+        }
+    }
+
+    @Test
+    void simpleTuple() {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+
+        CriteriaQuery<Tuple> cq = cb.createTupleQuery();
+        /* 위와 같은 코드 */
+        //CriteriaQuery<Tu|ple> cq = cb.createQuery(Tuple.class);
+
+        Root<Member> m = cq.from(Member.class);
+        cq.multiselect(
+                m.get("name").alias("userName"),
+                m.get("age").alias("age")
+        );
+
+        TypedQuery<Tuple> query = entityManager.createQuery(cq);
+        List<Tuple> reulstList = query.getResultList();
+
+        for (Tuple t : reulstList) {
+            String userName = t.get("userName", String.class);
+            Long age = t.get("age", Long.class);
+
+            log.info("name : " + userName);
+            log.info("age : " + age);
         }
     }
 }
