@@ -117,4 +117,31 @@ public class Criteria_Test_2 {
             log.info(member.getTeam().getTeamName());
         }
     }
+
+    @Test
+    void simpleFetchJoinDistinctTest() {
+        //JPQL_Test_2.class 의 collectionFetchJoinTest_2() 와 같은
+        //결과를 나타내는 Criteria Query
+
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Team> cq = cb.createQuery(Team.class);
+
+        Root<Team> t = cq.from(Team.class);
+        t.fetch("members", JoinType.INNER);
+
+        cq.select(t)
+                .where(cb.equal(t.get("id"), 1L))
+                .distinct(true);
+
+        TypedQuery<Team> query = entityManager.createQuery(cq);
+        List<Team> resultList = query.getResultList();
+
+        for (Team team : resultList) {
+            log.info("team name : " + team.getTeamName());
+
+            for (Member member : team.getMembers()) {
+                log.info("member name : " + member.getName());
+            }
+        }
+    }
 }
