@@ -60,7 +60,8 @@ public class Criteria_Test_2 {
 
         cq.multiselect(m.get("team").get("teamName"), maxAge, minAge)
                 .groupBy(m.get("team").get("teamName"))
-                .having(cb.gt(minAge, 30));
+                .having(cb.gt(minAge, 30))
+                .orderBy(cb.desc(maxAge));
 
         TypedQuery<Object[]> query = entityManager.createQuery(cq);
         List<Object[]> resultList = query.getResultList();
