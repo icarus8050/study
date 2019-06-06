@@ -1,4 +1,3 @@
--- Team
 INSERT INTO TEAM(team_name) values ('대한민국');
 INSERT INTO TEAM(team_name, parent_id) values ('서울', 1);
 INSERT INTO TEAM(team_name, parent_id) values ('대전', 1);

@@ -48,4 +48,31 @@ public class Criteria_Test_2 {
             log.info("min : " + min);
         }
     }
+
+    @Test
+    void simpleHavingTest() {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Object[]> cq = cb.createQuery(Object[].class);
+        Root<Member> m = cq.from(Member.class);
+
+        Expression maxAge = cb.max(m.<Long>get("age"));
+        Expression minAge = cb.min(m.<Long>get("age"));
+
+        cq.multiselect(m.get("team").get("teamName"), maxAge, minAge)
+                .groupBy(m.get("team").get("teamName"))
+                .having(cb.gt(minAge, 30));
+
+        TypedQuery<Object[]> query = entityManager.createQuery(cq);
+        List<Object[]> resultList = query.getResultList();
+
+        for (Object[] objects : resultList) {
+            String teamName = (String) objects[0];
+            Long max = (Long) objects[1];
+            Long min = (Long) objects[2];
+
+            log.info("Team name : " + teamName);
+            log.info("max : " + max);
+            log.info("min : " + min);
+        }
+    }
 }
