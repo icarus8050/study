@@ -1,6 +1,7 @@
 package com.example.jpamappingedu.repository;
 
 import com.example.jpamappingedu.domain.Member;
+import com.example.jpamappingedu.domain.Team;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +9,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Expression;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.List;
 
 @DataJpaTest
@@ -74,6 +72,49 @@ public class Criteria_Test_2 {
             log.info("Team name : " + teamName);
             log.info("max : " + max);
             log.info("min : " + min);
+        }
+    }
+
+    @Test
+    void simpleJoinTest() {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Object[]> cq = cb.createQuery(Object[].class);
+
+        Root<Member> m = cq.from(Member.class);
+        Join<Member, Team> t = m.join("team", JoinType.INNER);
+
+        cq.multiselect(m, t).where(cb.equal(t.get("teamName"), "대한민국"));
+        TypedQuery<Object[]> query = entityManager.createQuery(cq);
+        List<Object[]> resultList = query.getResultList();
+
+        for (Object[] objects : resultList) {
+            Member member = (Member) objects[0];
+            Team team = (Team) objects[1];
+
+            log.info(member.getName());
+            log.info(team.getTeamName());
+        }
+    }
+
+    @Test
+    void simpleFetchJoinTest() {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Member> cq = cb.createQuery(Member.class);
+
+        Root<Member> m = cq.from(Member.class);
+
+        m.fetch("team", JoinType.LEFT);
+
+        cq.select(m)
+                .where(cb.equal(m.get("team").get("teamName"), "대한민국"))
+                .distinct(true);
+
+        TypedQuery<Member> query = entityManager.createQuery(cq);
+        List<Member> resultList = query.getResultList();
+
+        for (Member member : resultList) {
+            log.info(member.getName());
+            log.info(member.getTeam().getTeamName());
         }
     }
 }
