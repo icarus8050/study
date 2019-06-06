@@ -35,6 +35,23 @@ public class JPQL_Test_3 {
     }
 
     @Test
+    void simpleSubQueryTest_2() {
+        String jpql = "select m from Member m " +
+                "where m.team.teamName = '대한민국' and " +
+                "m.age >= (select avg(m2.age) from Member m2 where m2.team.teamName = '대한민국')";
+
+        TypedQuery<Member> query = entityManager.createQuery(jpql, Member.class);
+
+        List<Member> resultList = query.getResultList();
+
+        for (Member m : resultList) {
+            log.info("name : " + m.getName());
+            log.info("age : " + m.getAge());
+            log.info("----------------------");
+        }
+    }
+
+    @Test
     void simpleExistsTest() {
         String jpql = "select m from Member m " +
                 "where exists (select t from m.team t where t.teamName = '대한민국')";
