@@ -15,6 +15,10 @@ INSERT INTO TEAM(team_name, parent_id) values ('홍콩', 4);
 
 INSERT INTO MEMBER(name, age, team_id) values('아이유', 27, 1);
 INSERT INTO MEMBER(name, age, team_id) values('레드벨벳', 24, 1);
+INSERT INTO MEMBER(name, age, team_id) values('악동뮤지션', 21, 1);
+INSERT INTO MEMBER(name, age, team_id) values('윤하', 22, 1);
+INSERT INTO MEMBER(name, age, team_id) values('소녀시대', 12, 1);
+INSERT INTO MEMBER(name, age, team_id) values('제이플라', 15, 1);
 INSERT INTO MEMBER(name, age, team_id) values('비투비', 30, 2);
 INSERT INTO MEMBER(name, age, team_id) values('악동뮤지션', 18, 5);
 INSERT INTO MEMBER(name, age, team_id) values('씨야', 12, 4);
