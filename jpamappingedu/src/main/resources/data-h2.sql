@@ -29,3 +29,27 @@ INSERT INTO MEMBER(name, age, team_id) values('트와이스', 19, 7);
 INSERT INTO MEMBER(name, age, team_id) values('엑소', 33, 9);
 INSERT INTO MEMBER(name, age, team_id) values('태연', 32, 9);
 INSERT INTO MEMBER(name, age, team_id) values('윤하', 16, 10);
+
+
+INSERT INTO SELF_ENTITY(name) values ('self_1');
+INSERT INTO SELF_ENTITY(name, parent_id) values ('self_2', 1);
+INSERT INTO SELF_ENTITY(name, parent_id) values ('self_3', 1);
+INSERT INTO SELF_ENTITY(name, parent_id) values ('self_4', 1);
+INSERT INTO SELF_ENTITY(name, parent_id) values ('self_5', 1);
+INSERT INTO SELF_ENTITY(name, parent_id) values ('self_6', 1);
+INSERT INTO SELF_ENTITY(name, parent_id) values ('self_7', 1);
+INSERT INTO SELF_ENTITY(name) values ('self_8');
+INSERT INTO SELF_ENTITY(name, parent_id) values ('self_9', 8);
+INSERT INTO SELF_ENTITY(name, parent_id) values ('self_10', 8);
+INSERT INTO SELF_ENTITY(name, parent_id) values ('self_11', 8);
+INSERT INTO SELF_ENTITY(name, parent_id) values ('self_12', 8);
+INSERT INTO SELF_ENTITY(name, parent_id) values ('self_13', 8);
+INSERT INTO SELF_ENTITY(name, parent_id) values ('self_14', 8);
+INSERT INTO SELF_ENTITY(name) values ('self_15');
+INSERT INTO SELF_ENTITY(name, parent_id) values ('self_16', 15);
+INSERT INTO SELF_ENTITY(name, parent_id) values ('self_17', 15);
+INSERT INTO SELF_ENTITY(name, parent_id) values ('self_18', 15);
+INSERT INTO SELF_ENTITY(name, parent_id) values ('self_19', 15);
+INSERT INTO SELF_ENTITY(name, parent_id) values ('self_20', 15);
+INSERT INTO SELF_ENTITY(name, parent_id) values ('self_21', 15);
+INSERT INTO SELF_ENTITY(name, parent_id) values ('self_22', 15);
