@@ -3,6 +3,8 @@ package com.example.demo_graphql.service;
 import com.example.demo_graphql.domain.Member;
 import com.example.demo_graphql.repository.MemberRepository;
 import io.leangen.graphql.annotations.GraphQLArgument;
+import io.leangen.graphql.annotations.GraphQLContext;
+import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,7 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
+    @GraphQLQuery(name = "members")
     public List<Member> getMembers() {
         return memberRepository.findAll();
     }
@@ -27,11 +30,12 @@ public class MemberService {
         return memberRepository.findById(id).orElse(null);
     }
 
-    public Member saveMember(Member member) {
+    @GraphQLMutation(name = "saveMember")
+    public Member saveMember(@GraphQLArgument(name = "member") Member member) {
         return memberRepository.save(member);
     }
 
-    public void deleteMember(@NotNull Long id) {
+    /*public void deleteMember(@NotNull Long id) {
         memberRepository.deleteById(id);
-    }
+    }*/
 }
