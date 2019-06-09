@@ -1,6 +1,7 @@
 package com.example.demo_graphql.domain;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import io.leangen.graphql.annotations.GraphQLQuery;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -9,7 +10,7 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
-@Getter
+@Getter(onMethod = @_(@GraphQLQuery))
 public class Team extends BaseEntity {
 
     @Id

@@ -1,6 +1,7 @@
 package com.example.demo_graphql.controller;
 
 import com.example.demo_graphql.service.MemberService;
+import com.example.demo_graphql.service.TeamService;
 import graphql.ExecutionInput;
 import graphql.ExecutionResult;
 import graphql.GraphQL;
@@ -19,15 +20,17 @@ import java.util.Map;
 
 @RestController
 @Slf4j
-public class MemberController {
+public class GraphQLController {
 
     private final GraphQL graphQL;
 
     @Autowired
-    public MemberController(MemberService memberService) {
+    public GraphQLController(MemberService memberService,
+                             TeamService teamService) {
         GraphQLSchema schema = new GraphQLSchemaGenerator()
                 .withBasePackages("com.example.demo_graphql")
                 .withOperationsFromSingleton(memberService, MemberService.class)
+                .withOperationsFromSingleton(teamService, TeamService.class)
                 .generate();
         this.graphQL = GraphQL.newGraphQL(schema).build();
     }
@@ -54,7 +57,6 @@ public class MemberController {
                 .operationName(request.get("operationName"))
                 .context(raw)
                 .build());
-        log.info("test aaaaaaaaa");
         return executionResult.toSpecification();
     }
 }

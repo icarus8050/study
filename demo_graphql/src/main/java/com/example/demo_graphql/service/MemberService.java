@@ -3,7 +3,6 @@ package com.example.demo_graphql.service;
 import com.example.demo_graphql.domain.Member;
 import com.example.demo_graphql.repository.MemberRepository;
 import io.leangen.graphql.annotations.GraphQLArgument;
-import io.leangen.graphql.annotations.GraphQLContext;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
 import lombok.RequiredArgsConstructor;
