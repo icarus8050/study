@@ -1,14 +1,14 @@
-type Member {
-    memberId: ID!
-    name: String!
-    age: Int!
-}
-
-type Query {
-    findAllMembers: [Member]!
-    countMembers: Int!
-}
-
-type Mutation {
-    newMember(name: String!, age: Int!) : Member!
-}
+#type Member {
+#    memberId: ID!
+#    name: String!
+#    age: Int!
+#}
+#
+#type Query {
+#    findAllMembers: [Member]!
+#    countMembers: Int!
+#}
+#
+#type Mutation {
+#    newMember(name: String!, age: Int!) : Member!
+#}

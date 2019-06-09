@@ -2,13 +2,14 @@ package com.example.demo_graphql.service;
 
 import com.example.demo_graphql.domain.Member;
 import com.example.demo_graphql.repository.MemberRepository;
+import io.leangen.graphql.annotations.GraphQLArgument;
+import io.leangen.graphql.annotations.GraphQLQuery;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -21,8 +22,9 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
-    public Optional<Member> getMemberById(@NotNull Long id) {
-        return memberRepository.findById(id);
+    @GraphQLQuery(name = "member")
+    public Member getMemberById(@NotNull @GraphQLArgument(name = "id") Long id) {
+        return memberRepository.findById(id).orElse(null);
     }
 
     public Member saveMember(Member member) {
