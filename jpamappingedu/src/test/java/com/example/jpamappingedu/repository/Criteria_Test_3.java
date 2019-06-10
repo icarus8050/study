@@ -100,4 +100,24 @@ public class Criteria_Test_3 {
             log.info("age : " + member.getAge());
         }
     }
+
+    @Test
+    void joinOnTest() {
+
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Member> cq = cb.createQuery(Member.class);
+
+        Root<Member> m = cq.from(Member.class);
+        Join<Member, Team> t = m.join("team");
+        //t.on(cb.equal(m.get("team").get("id"), 1));
+
+        cq.select(m).where(cb.equal(t.get("id"), 1));
+
+        TypedQuery<Member> query = entityManager.createQuery(cq);
+        List<Member> members = query.getResultList();
+
+        for (Member member: members) {
+            log.info("test : " + member.getName());
+        }
+    }
 }
