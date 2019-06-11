@@ -34,7 +34,7 @@
         </dependency>
 
         <!-- GraphQL-->
-        <dependency>
+        <!--<dependency>
             <groupId>com.graphql-java</groupId>
             <artifactId>graphql-spring-boot-starter</artifactId>
             <version>5.0.2</version>
@@ -44,7 +44,7 @@
             <groupId>com.graphql-java</groupId>
             <artifactId>graphql-java-tools</artifactId>
             <version>5.2.4</version>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>io.leangen.graphql</groupId>
@@ -52,11 +52,11 @@
             <version>0.0.4</version>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>io.leangen.graphql</groupId>
             <artifactId>spqr</artifactId>
             <version>0.9.9</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>com.graphql-java</groupId>
             <artifactId>graphiql-spring-boot-starter</artifactId>
