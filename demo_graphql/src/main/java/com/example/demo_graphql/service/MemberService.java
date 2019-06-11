@@ -5,7 +5,6 @@ import com.example.demo_graphql.repository.MemberRepository;
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
-import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +15,6 @@ import java.util.List;
 @Service
 @Transactional
 @RequiredArgsConstructor
-@GraphQLApi
 public class MemberService {
 
     private final MemberRepository memberRepository;
