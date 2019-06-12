@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 
@@ -22,12 +21,13 @@ public class Member extends BaseEntity {
     private Long age;
 
     @Builder
-    public Member(String name, Long age) {
+    public Member(String name, Long age, Team team) {
         this.name = name;
         this.age = age;
+        this.team = team;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "TEAM_ID")
     @JsonBackReference
     private Team team;

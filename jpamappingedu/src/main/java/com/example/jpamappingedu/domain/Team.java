@@ -2,10 +2,12 @@ package com.example.jpamappingedu.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -31,7 +33,13 @@ public class Team extends BaseEntity {
 
     //private Long parentId;
 
-    @OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "team", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JsonManagedReference
     private List<Member> members;
+
+    @Builder
+    public Team(String teamName) {
+        this.teamName = teamName;
+        this.members = new ArrayList<>();
+    }
 }

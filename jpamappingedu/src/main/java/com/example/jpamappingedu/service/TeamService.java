@@ -31,4 +31,8 @@ public class TeamService {
     public List<Team> findTeams(Long id) {
         return teamRepository.findAll();
     }
+
+    public Team saveTeam(Team team) {
+        return teamRepository.save(team);
+    }
 }
