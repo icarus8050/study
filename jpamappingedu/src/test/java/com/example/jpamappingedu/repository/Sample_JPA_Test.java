@@ -74,18 +74,25 @@ public class Sample_JPA_Test {
     @Test
     void saveTeamTest() {
         Team team = Team.builder()
-                .id(100L)
                 .teamName("testTeam")
                 .build();
 
         teamService.saveTeam(team);
-        //Long teamId = team.getId();
+        Long teamId = team.getId();
 
-        /*Team team1 = Team.builder()
-                .id(100L)
-                .teamName("aaa")
-                .build();
+        Team team1 = teamService.findByid(teamId);
 
-        teamService.saveTeam(team1);*/
+        teamService.saveTeam(team1);
+        System.out.println(team1.getTeamName());
+        System.out.println(team.equals(team1));
+    }
+
+    @Test
+    void findTeamMembers() {
+        Team team = teamService.findByid(1L);
+
+        for(Member m : team.getMembers()) {
+            log.info("name is.." + m.getName());
+        }
     }
 }

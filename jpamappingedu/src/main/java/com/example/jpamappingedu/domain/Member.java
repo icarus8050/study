@@ -28,7 +28,7 @@ public class Member extends BaseEntity {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "TEAM_ID")
+    @JoinColumn(name = "TEAM_ID", nullable = false)
     @JsonBackReference
     private Team team;
 
