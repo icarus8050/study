@@ -32,4 +32,12 @@ public class Team extends BaseEntity {
         this.id = id;
         this.teamName = teamName;
     }
+
+    public void addAllMembers(List<Member> members) {
+        this.members.addAll(members);
+
+        for (Member m : members) {
+            m.setTeam(this);
+        }
+    }
 }
