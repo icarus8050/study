@@ -16,6 +16,7 @@ import java.util.List;
 public class Team extends BaseEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String teamName;

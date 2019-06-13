@@ -67,7 +67,7 @@ public class Sample_JPA_Test {
                     .name("testMember")
                     .team(team)
                     .build();
-            team.getMembers().add(member);
+            memberService.saveMember(member);
         }
     }
 

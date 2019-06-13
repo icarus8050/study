@@ -27,7 +27,7 @@ public class Member extends BaseEntity {
         this.team = team;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TEAM_ID")
     @JsonBackReference
     private Team team;
