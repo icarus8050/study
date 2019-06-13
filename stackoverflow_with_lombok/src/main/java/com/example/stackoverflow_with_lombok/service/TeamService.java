@@ -35,4 +35,8 @@ public class TeamService {
     public Team saveTeam(Team team) {
         return teamRepository.save(team);
     }
+
+    public Team saveTeamAllmembers(Team team) {
+        return teamRepository.saveAndFlush(team);
+    }
 }

@@ -2,10 +2,7 @@ package com.example.stackoverflow_with_lombok.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,6 +11,8 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @Data
+@ToString(exclude = {"members"})
+@EqualsAndHashCode(of = "id", callSuper = false)
 public class Team extends BaseEntity {
 
     @Id
@@ -22,6 +21,15 @@ public class Team extends BaseEntity {
 
     private String teamName;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parentId", referencedColumnName = "id")
+    @JsonBackReference
+    private Team parentTeam;
+
+    @OneToMany
+    @JoinColumn(name = "parentId")
+    @JsonManagedReference
+    private List<Team> teams;
 
     @OneToMany(mappedBy = "team", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JsonManagedReference

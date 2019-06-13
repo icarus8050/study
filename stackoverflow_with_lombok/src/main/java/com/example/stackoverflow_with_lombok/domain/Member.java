@@ -1,16 +1,15 @@
 package com.example.stackoverflow_with_lombok.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Data
+@ToString(exclude = {"team"})
 @NoArgsConstructor
 @Entity
+@EqualsAndHashCode(of = "memberId", callSuper = false)
 public class Member extends BaseEntity {
 
     @Id
