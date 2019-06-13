@@ -1,4 +1,4 @@
-/*INSERT INTO TEAM(team_name) values ('대한민국');
+INSERT INTO TEAM(team_name) values ('대한민국');
 INSERT INTO TEAM(team_name, parent_id) values ('서울', 1);
 INSERT INTO TEAM(team_name, parent_id) values ('대전', 1);
 INSERT INTO TEAM(team_name, parent_id) values ('부산', 1);
@@ -52,4 +52,4 @@ INSERT INTO SELF_ENTITY(name, parent_id) values ('self_18', 15);
 INSERT INTO SELF_ENTITY(name, parent_id) values ('self_19', 15);
 INSERT INTO SELF_ENTITY(name, parent_id) values ('self_20', 15);
 INSERT INTO SELF_ENTITY(name, parent_id) values ('self_21', 15);
-INSERT INTO SELF_ENTITY(name, parent_id) values ('self_22', 15);*/
+INSERT INTO SELF_ENTITY(name, parent_id) values ('self_22', 15);
