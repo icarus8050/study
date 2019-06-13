@@ -72,6 +72,25 @@ public class Sample_JPA_Test {
     }
 
     @Test
+    void saveTeamAndMembersTest() {
+        Team team = Team.builder()
+                .teamName("testTeam")
+                .build();
+
+        for (int i = 1; i <= 5; i++) {
+            Member member = Member.builder()
+                    .age(1L)
+                    .name("testMember")
+                    .team(team)
+                    .build();
+
+            team.getMembers().add(member);
+        }
+
+        teamService.saveTeam(team);
+    }
+
+    @Test
     void saveTeamTest() {
         Team team = Team.builder()
                 .teamName("testTeam")
