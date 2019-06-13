@@ -16,7 +16,6 @@ import java.util.List;
 public class Team extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String teamName;
@@ -38,7 +37,8 @@ public class Team extends BaseEntity {
     private List<Member> members;
 
     @Builder
-    public Team(String teamName) {
+    public Team(Long id, String teamName) {
+        this.id = id;
         this.teamName = teamName;
         this.members = new ArrayList<>();
     }

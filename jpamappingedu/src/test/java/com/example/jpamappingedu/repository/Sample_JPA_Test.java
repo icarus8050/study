@@ -59,6 +59,7 @@ public class Sample_JPA_Test {
                 .teamName("testTeam")
                 .build();
 
+        teamService.saveTeam(team);
 
         for (int i = 1; i <= 5; i++) {
             Member member = Member.builder()
@@ -68,6 +69,23 @@ public class Sample_JPA_Test {
                     .build();
             team.getMembers().add(member);
         }
+    }
+
+    @Test
+    void saveTeamTest() {
+        Team team = Team.builder()
+                .id(100L)
+                .teamName("testTeam")
+                .build();
+
         teamService.saveTeam(team);
+        //Long teamId = team.getId();
+
+        /*Team team1 = Team.builder()
+                .id(100L)
+                .teamName("aaa")
+                .build();
+
+        teamService.saveTeam(team1);*/
     }
 }
