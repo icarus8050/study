@@ -33,7 +33,7 @@ public class Team extends BaseEntity {
 
     //private Long parentId;
 
-    @OneToMany(mappedBy = "team", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "team", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     @JsonManagedReference
     private List<Member> members = new ArrayList<>();
 

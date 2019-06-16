@@ -27,13 +27,13 @@ public class Member extends BaseEntity {
         this.team = team;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "TEAM_ID", nullable = false)
     @JsonBackReference
     private Team team;
 
-    public void changeAge() {
-        age = 100L;
+    public void changeAge(Long age) {
+        this.age = age;
     }
 
     @Embedded

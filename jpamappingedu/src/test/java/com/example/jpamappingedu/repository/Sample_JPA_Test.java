@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
@@ -87,6 +88,13 @@ public class Sample_JPA_Test {
             team.getMembers().add(member);
         }
 
+        teamService.saveTeam(team);
+        List<Member> memberList = team.getMembers();
+
+        for(Member m : memberList) {
+            m.changeAge(100L);
+            //memberService.saveMember(m);
+        }
         teamService.saveTeam(team);
     }
 
