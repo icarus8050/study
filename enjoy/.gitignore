@@ -29,4 +29,4 @@ HELP.md
 .vscode/
 
 ### secret ###
-secret/
+resources/real_db.yml
