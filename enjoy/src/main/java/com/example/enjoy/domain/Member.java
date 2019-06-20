@@ -10,7 +10,7 @@ import java.util.UUID;
 @Entity
 @NoArgsConstructor
 @Getter
-public class Member {
+public class Member extends BaseEntity {
 
     @Id
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
@@ -28,5 +28,9 @@ public class Member {
 
     @Column
     private String principal;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private SocialType socialType;
 
 }
