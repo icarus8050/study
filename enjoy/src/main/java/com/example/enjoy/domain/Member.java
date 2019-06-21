@@ -1,5 +1,6 @@
 package com.example.enjoy.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
@@ -15,7 +16,7 @@ public class Member extends BaseEntity {
     @Id
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @GeneratedValue(generator = "uuid2")
-    private UUID id;
+    private UUID uuid;
 
     @Column
     private String email;
@@ -33,4 +34,13 @@ public class Member extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private SocialType socialType;
 
+    @Builder
+    public Member(String email, String name, String password,
+                  String principal, SocialType socialType) {
+        this.email = email;
+        this.name = name;
+        this.password = password;
+        this.principal = principal;
+        this.socialType = socialType;
+    }
 }
