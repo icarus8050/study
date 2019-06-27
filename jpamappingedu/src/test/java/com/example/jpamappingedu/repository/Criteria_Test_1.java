@@ -62,6 +62,25 @@ public class Criteria_Test_1 {
     }
 
     @Test
+    void simpleWhereTest() {
+        /* 검색 조건에 걸리지 않으면 resultList는
+         null이 아닌 size가 0인 List로 반환된다. */
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Member> query = builder.createQuery(Member.class);
+
+        Root<Member> m = query.from(Member.class);
+
+        Predicate overAge = builder.gt(m.get("age"), 50);
+
+        query.select(m).where(overAge);
+        TypedQuery<Member> typedQuery = entityManager.createQuery(query);
+
+        List<Member> resultList = typedQuery.getResultList();
+
+        System.out.println(resultList.size());
+    }
+
+    @Test
     void simpleMultiSelect() {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 
