@@ -1,7 +1,6 @@
 package com.edu.querydsl_training.domain;
 
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -17,14 +16,14 @@ public class Team {
     private Long teamId;
 
     @Column(length = 20)
-    private String name;
+    private String teamName;
 
     @Column
     private Long awardCount;
 
     @Builder
-    public Team(String name, Long awardCount) {
-        this.name = name;
+    public Team(String teamName, Long awardCount) {
+        this.teamName = teamName;
         this.awardCount = awardCount;
     }
 }
