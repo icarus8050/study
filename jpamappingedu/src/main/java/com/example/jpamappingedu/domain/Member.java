@@ -25,6 +25,7 @@ public class Member extends BaseEntity {
         this.name = name;
         this.age = age;
         this.team = team;
+
     }
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = {CascadeType.REFRESH})

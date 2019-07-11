@@ -21,7 +21,7 @@ public class Member {
     @Column
     private Long age;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "teamId", updatable = false)
     private Team team;
 

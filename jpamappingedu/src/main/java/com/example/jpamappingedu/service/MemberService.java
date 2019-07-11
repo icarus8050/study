@@ -30,7 +30,7 @@ public class MemberService {
 
     public Member update(Long id) {
         Member member = memberRepository.findById(id).orElse(null);
-        member.changeAge();
+        member.changeAge(100L);
         return memberRepository.save(member);
     }
 }
