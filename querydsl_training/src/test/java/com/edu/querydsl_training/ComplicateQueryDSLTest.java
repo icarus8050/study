@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Tuple;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -48,18 +49,16 @@ public class ComplicateQueryDSLTest {
     }
 
     @Test
-    public void groupByTest() {
+    public void simpleGroupByTest() {
         QMember m = QMember.member;
         QTeam t = QTeam.team;
-
-        List<Member> members = query.selectFrom(m)
-                .innerJoin(m.team, t).fetchJoin()
-                .groupBy(t)
-                .having(t.awardCount.goe(5))
-                .fetch();
-
-        for (Member member : members) {
-            log.info(member.getName());
-        }
+        query.select(m.age.avg())
+                .from(m)
+                .groupBy(m.team)
+                .fetch()
+                .stream()
+                .forEach(value -> {
+                    log.info(value.toString());
+                });
     }
 }
