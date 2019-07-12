@@ -3,6 +3,7 @@ package com.edu.querydsl_training;
 import com.edu.querydsl_training.domain.Member;
 import com.edu.querydsl_training.domain.QMember;
 import com.edu.querydsl_training.domain.QTeam;
+import com.querydsl.core.Tuple;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
@@ -13,7 +14,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Tuple;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -51,7 +51,7 @@ public class ComplicateQueryDSLTest {
     @Test
     public void simpleGroupByTest() {
         QMember m = QMember.member;
-        QTeam t = QTeam.team;
+
         query.select(m.age.avg())
                 .from(m)
                 .groupBy(m.team)
@@ -60,5 +60,21 @@ public class ComplicateQueryDSLTest {
                 .forEach(value -> {
                     log.info(value.toString());
                 });
+    }
+
+    @Test
+    public void simpleGroupByTest_2() {
+        QMember m = QMember.member;
+        QTeam t = QTeam.team;
+
+        List<Tuple> tuples = query.select(m.count(), t.teamName)
+                .from(m).innerJoin(m.team, t)
+                .groupBy(t)
+                .fetch();
+
+        for (Tuple tuple : tuples) {
+            log.info("member count : " + tuple.get(m.count()));
+            log.info("team name : " + tuple.get(t.teamName));
+        }
     }
 }
