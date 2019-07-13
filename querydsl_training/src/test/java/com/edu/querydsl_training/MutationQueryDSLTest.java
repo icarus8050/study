@@ -3,7 +3,6 @@ package com.edu.querydsl_training;
 import com.edu.querydsl_training.domain.Member;
 import com.edu.querydsl_training.domain.QMember;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.querydsl.jpa.impl.JPAUpdateClause;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,6 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import java.util.List;
+
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -64,5 +68,25 @@ public class MutationQueryDSLTest {
                     log.info("name is " + member.getName());
                     log.info("age is " + member.getAge());
                 });
+    }
+
+    @Test
+    public void simpleDeleteTest() {
+        QMember m = QMember.member;
+
+        query.delete(m).where(m.memberId.eq(1L)).execute();
+
+        Member deleted = query.selectFrom(m).where(m.memberId.eq(1L)).fetchOne();
+        assertThat(deleted, is(nullValue()));
+    }
+
+    @Test
+    public void bulkDeleteTest() {
+        QMember m = QMember.member;
+
+        query.delete(m).where(m.memberId.loe(5)).execute();
+
+        List<Member> members = query.selectFrom(m).where(m.memberId.loe(5)).fetch();
+        assertThat(members.size(), is(0));
     }
 }
