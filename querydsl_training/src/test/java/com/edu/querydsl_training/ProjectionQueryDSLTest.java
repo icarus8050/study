@@ -2,6 +2,7 @@ package com.edu.querydsl_training;
 
 import com.edu.querydsl_training.domain.MemberDTO;
 import com.edu.querydsl_training.domain.QMember;
+import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -27,6 +29,33 @@ public class ProjectionQueryDSLTest {
     @Before
     public void setUp() {
         query = new JPAQueryFactory(em);
+    }
+
+    @Test
+    public void oneProjectionTest() {
+        QMember m = QMember.member;
+
+        query.select(m.name)
+                .from(m)
+                .fetch()
+                .stream()
+                .forEach(name -> log.info("name is : " + name));
+    }
+
+    @Test
+    public void twoProjectionsTest() {
+        QMember m = QMember.member;
+
+        List<Tuple> results = query.select(m.name, m.age)
+                .where(m.age.goe(30L))
+                .from(m)
+                .fetch();
+
+        results.stream()
+                .forEach(tuple -> {
+                    log.info("name is " + tuple.get(0, String.class));
+                    log.info("age is " + tuple.get(m.age));
+                });
     }
 
     @Test
