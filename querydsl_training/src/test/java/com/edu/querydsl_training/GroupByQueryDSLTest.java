@@ -19,7 +19,7 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Slf4j
-public class ComplicateQueryDSLTest {
+public class GroupByQueryDSLTest {
 
     @PersistenceContext
     EntityManager em;
@@ -62,6 +62,9 @@ public class ComplicateQueryDSLTest {
                 });
     }
 
+    /**
+     * InnerJoin 의 결과를 GroupBy로 묶어서 집계합수를 실행하는 테스트 코드
+     */
     @Test
     public void simpleGroupByTest_2() {
         QMember m = QMember.member;
@@ -76,5 +79,25 @@ public class ComplicateQueryDSLTest {
             log.info("member count : " + tuple.get(m.count()));
             log.info("team name : " + tuple.get(t.teamName));
         }
+    }
+
+    /**
+     * 팀을 그룹화하여 팀의 평균 나이, 팀의 멤버 수를 구하는 쿼리
+     */
+    @Test
+    public void simpleGroupByTest_3() {
+        QMember m = QMember.member;
+        QTeam t = QTeam.team;
+
+        query.select(m.age.avg(), m.count(), t.teamName)
+                .from(m).innerJoin(m.team, t)
+                .groupBy(t)
+                .fetch()
+                .stream()
+                .forEach(tuple -> {
+                    log.info("team name : " + tuple.get(t.teamName));
+                    log.info("member count : " + tuple.get(1, Long.class));
+                    log.info("age avg : " + tuple.get(m.age.avg()));
+                });
     }
 }
