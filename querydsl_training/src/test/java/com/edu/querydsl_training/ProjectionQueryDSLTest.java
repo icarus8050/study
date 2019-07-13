@@ -70,4 +70,17 @@ public class ProjectionQueryDSLTest {
                     log.info("member age : " + value.getAge());
                 });
     }
+
+    @Test
+    public void distinctQueryTest() {
+        QMember m = QMember.member;
+
+        query.select(m.team.countDistinct())
+                .from(m)
+                .fetch()
+                .stream()
+                .forEach(v -> {
+                    log.info(v.toString());
+                });
+    }
 }
