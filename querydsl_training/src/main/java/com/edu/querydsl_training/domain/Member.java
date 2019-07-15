@@ -25,6 +25,9 @@ public class Member {
     @JoinColumn(name = "teamId", updatable = false)
     private Team team;
 
+    @Column
+    private Long mentor;
+
     @Builder
     public Member(String name, Long age, Team team) {
         this.name = name;
