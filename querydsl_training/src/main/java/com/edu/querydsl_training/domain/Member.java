@@ -34,4 +34,8 @@ public class Member {
         this.age = age;
         this.team = team;
     }
+
+    public void changeAge(Long age) {
+        this.age = age;
+    }
 }
