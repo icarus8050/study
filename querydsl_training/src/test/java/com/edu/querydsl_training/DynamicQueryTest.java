@@ -1,8 +1,11 @@
 package com.edu.querydsl_training;
 
+import com.edu.querydsl_training.domain.MemberDTO;
 import com.edu.querydsl_training.domain.QMember;
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.core.types.dsl.CaseBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
@@ -83,5 +86,22 @@ public class DynamicQueryTest {
             return null;
         }
         return member.age.goe(age);
+    }
+
+    @Test
+    public void simpleCaseWhenQueryTest() {
+        query.select(Projections.fields(MemberDTO.class,
+                member.name,
+                new CaseBuilder()
+                        .when(member.age.goe(20L))
+                        .then(member.age.add(100L))
+                        .otherwise(member.age)).as("age"))
+                .from(member)
+                .fetch()
+                .stream()
+                .forEach(v -> {
+                    log.info("name is : " + v.getName());
+                    log.info("age is : " + v.getAge());
+                });
     }
 }
