@@ -93,7 +93,7 @@ public class DynamicQueryTest {
         query.select(Projections.fields(MemberDTO.class,
                 member.name,
                 new CaseBuilder()
-                        .when(member.age.goe(20L))
+                        .when(member.name.eq("레드벨벳"))
                         .then(member.age.add(100L))
                         .otherwise(member.age)).as("age"))
                 .from(member)
