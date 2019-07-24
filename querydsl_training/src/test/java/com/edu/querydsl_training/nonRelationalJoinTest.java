@@ -60,7 +60,7 @@ public class nonRelationalJoinTest {
 
         query.select(member)
                 .from(member)
-                .where(member.team.teamId.eq(1L))
+                .where(member.team.teamId.in(1L))
                 .fetch()
                 .stream()
                 .forEach(m -> {
@@ -80,6 +80,27 @@ public class nonRelationalJoinTest {
 
         query.select(from)
                 .where(builder.equal(from.get("team").get("teamId"), 1L));
+        em.createQuery(query)
+                .getResultList()
+                .stream()
+                .forEach(member -> {
+                    log.info("name is : " + member.getName());
+                });
+    }
+
+    /**
+     * 특정 팀에 속한 member의 리스트를 조회하는 쿼리 (teamId 만으로 조회, Join 사용 x)
+     */
+    @Test
+    public void memberSearchWithInTeam() {
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<Member> query = builder.createQuery(Member.class);
+
+        Root<Member> from = query.from(Member.class);
+
+        query.select(from)
+                .where(from.get("team").get("teamId").in(1L, 2L));
+
         em.createQuery(query)
                 .getResultList()
                 .stream()
