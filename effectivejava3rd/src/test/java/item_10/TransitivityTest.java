@@ -4,8 +4,6 @@ import org.junit.Test;
 
 import java.awt.*;
 
-import static org.junit.Assert.*;
-
 /**
  * 추이성 테스트
  * x == y, y == z -> x == z
@@ -30,5 +28,10 @@ public class TransitivityTest {
         System.out.println(p1.equals(p2));  //true
         System.out.println(p2.equals(p3));  //true
         System.out.println(p1.equals(p3));  //false
+    }
+
+    @Test
+    public void 컴포지션_이용하여_equals() {
+        ColorPoint colorPoint = new ColorPoint(1, 2, Color.RED);
     }
 }

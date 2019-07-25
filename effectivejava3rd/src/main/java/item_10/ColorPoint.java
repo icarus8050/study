@@ -2,23 +2,25 @@ package item_10;
 
 import java.awt.*;
 
-public class ColorPoint extends Point {
+public class ColorPoint {
+    private Point point;
     private Color color;
 
     public ColorPoint(int x, int y, Color color) {
-        super(x, y);
+        point = new Point(x, y);
         this.color = color;
+    }
+
+    public Point asPoint() {
+        return this.point;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof Point)) {
+        if (!(obj instanceof ColorPoint)) {
             return false;
         }
-
-        if (!(obj instanceof ColorPoint)) {
-            return obj.equals(this);
-        }
-        return super.equals(obj) && ((ColorPoint) obj).color == this.color;
+        ColorPoint cp = (ColorPoint) obj;
+        return cp.point.equals(this.point) && cp.color.equals(this.color);
     }
 }
