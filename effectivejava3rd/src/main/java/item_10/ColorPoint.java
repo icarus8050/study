@@ -12,11 +12,12 @@ public class ColorPoint extends Point {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof Point)) {
+        if (!(obj instanceof Point)) {
             return false;
         }
+
         if (!(obj instanceof ColorPoint)) {
-            return false;
+            return obj.equals(this);
         }
         return super.equals(obj) && ((ColorPoint) obj).color == this.color;
     }

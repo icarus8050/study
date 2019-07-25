@@ -17,6 +17,18 @@ public class TransitivityTest {
         Point p = new Point(1, 2);
         ColorPoint cp = new ColorPoint(1, 2, Color.RED);
 
-        assertEquals(p.equals(cp), cp.equals(p));
+        System.out.println(p.equals(cp));   //true
+        System.out.println(cp.equals(p));   //false
+    }
+
+    @Test
+    public void 추이성_위배() {
+        ColorPoint p1 = new ColorPoint(1, 2, Color.RED);
+        Point p2 = new Point(1, 2);
+        ColorPoint p3 = new ColorPoint(1, 2, Color.BLACK);
+
+        System.out.println(p1.equals(p2));  //true
+        System.out.println(p2.equals(p3));  //true
+        System.out.println(p1.equals(p3));  //false
     }
 }
