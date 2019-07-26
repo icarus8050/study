@@ -41,4 +41,11 @@ public class PhoneNumberTest {
 
         System.out.println(m.get(new PhoneNumber(111, 222, 3333)));
     }
+
+    @Test
+    public void toString_재정의_테스트() {
+        PhoneNumber phoneNumber = new PhoneNumber(111, 222, 333);
+
+        System.out.println(phoneNumber.toString());
+    }
 }

@@ -37,4 +37,9 @@ public final class PhoneNumber {
         result = 31 * result + Short.hashCode(lineNum);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%03d-%03d-%04d", areaCode, prefix, lineNum);
+    }
 }
