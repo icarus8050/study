@@ -1,4 +1,6 @@
-package item_10;
+package item_14;
+
+import java.util.Comparator;
 
 public final class PhoneNumber implements Comparable<PhoneNumber> {
     private final short areaCode, prefix, lineNum;
@@ -45,13 +47,11 @@ public final class PhoneNumber implements Comparable<PhoneNumber> {
 
     @Override
     public int compareTo(PhoneNumber o) {
-        int result = Short.compare(areaCode, o.areaCode);
-        if (result == 0) {
-            result = Short.compare(prefix, o.prefix);
-            if (result == 0) {
-                result = Short.compare(lineNum, o.lineNum);
-            }
-        }
-        return result;
+        return COMPARATOR.compare(this, o);
     }
+
+    private static final Comparator<PhoneNumber> COMPARATOR =
+            Comparator.comparingInt((PhoneNumber pn) -> pn.areaCode)
+                    .thenComparing(pn -> pn.prefix)
+                    .thenComparing(pn -> pn.lineNum);
 }
