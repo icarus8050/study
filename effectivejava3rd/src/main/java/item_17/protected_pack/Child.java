@@ -6,4 +6,9 @@ public class Child extends Parent {
     public void print() {
         System.out.println("I'm Child");
     }
+
+    @Override
+    protected void run() {
+        System.out.println("child run...");
+    }
 }

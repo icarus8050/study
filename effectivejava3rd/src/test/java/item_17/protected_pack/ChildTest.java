@@ -12,4 +12,15 @@ public class ChildTest {
         parent.print();
     }
 
+    @Test
+    public void 상속테스트_2() {
+        Parent parent = new Child();
+        parent.greeting();
+    }
+
+    @Test
+    public void 상속테스트_3() {
+        Parent parent = new Child();
+        parent.run();
+    }
 }
