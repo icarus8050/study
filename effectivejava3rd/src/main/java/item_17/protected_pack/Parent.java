@@ -13,4 +13,12 @@ public class Parent {
     protected void run() {
         System.out.println("running...");
     }
+
+    private void hidden() {
+        System.out.println("hidden method");
+    }
+
+    protected void delegating() {
+        hidden();
+    }
 }

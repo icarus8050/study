@@ -23,4 +23,10 @@ public class ChildTest {
         Parent parent = new Child();
         parent.run();
     }
+
+    @Test
+    public void 상속테스트_4() {
+        Parent parent = new Child();
+        parent.delegating();
+    }
 }
