@@ -27,4 +27,19 @@ public class InstrumentedHashSetTest {
         System.out.println("this count is : " + s.getAddCount());
     }
 
+    @Test
+    public void 데코레이터패턴() {
+        Display window = new WindowDisplay();
+        window.draw();
+
+        System.out.println();
+
+        Display windowWithRowScroll = new RowScrollDecorator(new WindowDisplay());
+        windowWithRowScroll.draw();
+
+        System.out.println();
+
+        Display windowWithRowScrollAndColScroll = new ColScrollDecorator(new RowScrollDecorator(new WindowDisplay()));
+        windowWithRowScrollAndColScroll.draw();
+    }
 }
