@@ -8,8 +8,9 @@ public class StackGeneric<E> {
     private int size = 0;
     private static final int DEFAULT_INITIAL_CAPACITY = 16;
 
+    @SuppressWarnings("unchecked")
     public StackGeneric() {
-        elements = new E[DEFAULT_INITIAL_CAPACITY];
+        elements = (E[]) new Object[DEFAULT_INITIAL_CAPACITY];
     }
 
     public void push(E e) {
