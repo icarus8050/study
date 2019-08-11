@@ -36,4 +36,10 @@ public class StackGeneric<E> {
             elements = Arrays.copyOf(elements, 2 * size + 1);
         }
     }
+
+    public void pushAll(Iterable<E> src) {
+        for (E e : src) {
+            push(e);
+        }
+    }
 }
