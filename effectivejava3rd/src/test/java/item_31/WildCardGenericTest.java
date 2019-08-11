@@ -23,12 +23,12 @@ public class WildCardGenericTest {
         Work job2 = new Job("스터디 가기");
         Work job3 = new Job("세미나 가기");
 
-        List<ScheduledFuture<Work>> scheduledFutures = new ArrayList<>();
+        List<ScheduledFuture> scheduledFutures = new ArrayList<>();
         scheduledFutures.add(new Schedule<>(0, job1));
         scheduledFutures.add(new Schedule<>(5, job2));
         scheduledFutures.add(new Schedule<>(3, job3));
 
-        ScheduledFuture<Work> scheduledFuture = WildCardGeneric.max(scheduledFutures);
+        ScheduledFuture scheduledFuture = WildCardGeneric.max(scheduledFutures);
         scheduledFuture.work();
     }
 }
