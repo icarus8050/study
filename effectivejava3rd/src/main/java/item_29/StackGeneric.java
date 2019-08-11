@@ -37,7 +37,7 @@ public class StackGeneric<E> {
         }
     }
 
-    public void pushAll(Iterable<E> src) {
+    public void pushAll(Iterable<? extends E> src) {
         for (E e : src) {
             push(e);
         }
