@@ -1,6 +1,6 @@
 package item_31;
 
-public class Schedule<V extends Work> implements ScheduledFuture<V> {
+public class Schedule<V extends Work> implements ScheduledFuture {
 
     private int priority;
     private V job;

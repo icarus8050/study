@@ -1,5 +1,5 @@
 package item_31;
 
-public interface ScheduledFuture<V> extends Delayed {
+public interface ScheduledFuture extends Delayed {
     void work();
 }
