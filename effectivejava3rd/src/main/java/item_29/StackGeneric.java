@@ -1,6 +1,7 @@
 package item_29;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.EmptyStackException;
 
 public class StackGeneric<E> {
@@ -40,6 +41,12 @@ public class StackGeneric<E> {
     public void pushAll(Iterable<? extends E> src) {
         for (E e : src) {
             push(e);
+        }
+    }
+
+    public void popAll(Collection<? super E> dst) {
+        while (!isEmpty()) {
+            dst.add(pop());
         }
     }
 }
