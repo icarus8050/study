@@ -1,5 +1,8 @@
 package com.edu.jpatraining.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -22,5 +25,11 @@ public class Member {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "teamId")
+    @JsonBackReference
     private Team team;
+
+    public void modifyMember(String name, Integer age) {
+        this.name = name;
+        this.age = age;
+    }
 }
