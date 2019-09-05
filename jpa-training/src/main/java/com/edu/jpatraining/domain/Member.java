@@ -1,16 +1,14 @@
 package com.edu.jpatraining.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
-@Getter
+@Data
 public class Member {
 
     @Id
@@ -25,7 +23,7 @@ public class Member {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "teamId")
-    @JsonBackReference
+    @JsonManagedReference
     private Team team;
 
     public void modifyMember(String name, Integer age) {
