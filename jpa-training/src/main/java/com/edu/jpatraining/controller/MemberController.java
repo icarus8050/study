@@ -19,7 +19,6 @@ public class MemberController {
     @ResponseBody
     public Member getMember(@PathVariable Long id) {
         Member member = memberService.findById(id);
-        log.info("entity lifecycle : " + member.getTeam().getName());
         return member;
     }
 

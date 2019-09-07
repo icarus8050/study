@@ -1,6 +1,7 @@
 package com.edu.jpatraining.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -19,7 +20,10 @@ public class Team {
     @Column
     private String name;
 
+    @Version
+    private Integer version;
+
     @OneToMany(mappedBy = "team")
-    @JsonBackReference
+    @JsonManagedReference
     private List<Member> members;
 }
