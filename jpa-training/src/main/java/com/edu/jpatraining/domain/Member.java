@@ -1,16 +1,22 @@
 package com.edu.jpatraining.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.cache.annotation.Cacheable;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @NoArgsConstructor
 @Data
-public class Member {
+@Cacheable(value = "findMemberCache")
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+public class Member implements Serializable {
+
+    private static final long serialVersionUID = 6777183140118498486L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

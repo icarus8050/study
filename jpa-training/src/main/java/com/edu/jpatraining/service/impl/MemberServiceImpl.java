@@ -5,6 +5,7 @@ import com.edu.jpatraining.domain.request.ModifyMemberDto;
 import com.edu.jpatraining.repository.MemberRepository;
 import com.edu.jpatraining.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +17,13 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     @Transactional
+    @Cacheable(value = "findMemberCache", key = "#id")
     public Member findById(Long id) {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return memberRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid id"));
     }
 

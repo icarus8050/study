@@ -18,7 +18,11 @@ public class MemberController {
     @GetMapping("/{id}")
     @ResponseBody
     public Member getMember(@PathVariable Long id) {
+        long start = System.currentTimeMillis();
         Member member = memberService.findById(id);
+        long end = System.currentTimeMillis();
+
+        log.info(member.getId() + " 조회의 수행 시간 : " + (end - start));
         return member;
     }
 
@@ -26,7 +30,6 @@ public class MemberController {
     @ResponseBody
     public Member modifyMember(@PathVariable Long id, @RequestBody ModifyMemberDto modifyMemberDto) {
         Member member = memberService.modifyMember(id, modifyMemberDto);
-        log.info("entity lifecycle : " + member.getTeam().getName());
         return member;
     }
 }
